@@ -55,5 +55,52 @@ int main() {
             cout << endl;
         }
         cout << endl;
+    }else if((N % 2) == 0){ ///SABER SI ES PAR
+        clearScreen();
+
+        cout << "[CABALLOS EN AJEDREZ]" << endl << endl;
+
+        int tablero[N][N];
+
+        int M;
+
+        M = (N*N) / 2;
+
+        cout << "MAXIMO DE CABALLOS: " << M << endl << endl;
+        cout << "Soluciones: 2" << endl << endl;
+
+        cout << "[SOLUCION 1]" << endl << endl;
+
+        for(int indice = 1; indice <= N; indice++){
+            for(int index = 1; index <= N; index++){
+                if((indice + index) % 2 == 0){
+                    tablero[indice][index] = 1;
+                    cambio = false;
+                }else{
+                    tablero[indice][index] = 0;
+                    cambio = true;
+                }
+                cout << tablero[indice][index];
+            }
+            cout << endl;
+        }
+        cout << endl << endl;
+
+        cout << "[SOLUCION 2]" << endl << endl;
+
+        for(int indice = 1; indice <= N; indice++){
+            for(int index = 1; index <= N; index++){
+                if((indice + index) % 2 == 0){
+                    tablero[indice][index] = 0;
+                    cambio = false;
+                }else{
+                    tablero[indice][index] = 1;
+                    cambio = true;
+                }
+                cout << tablero[indice][index];
+            }
+            cout << endl;
+        }
+        cout << endl;
     }
 }
