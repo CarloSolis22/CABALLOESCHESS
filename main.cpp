@@ -19,6 +19,8 @@ int main() {
     cout << "Tamano del Tablero: ";
     cin >> N;
 
+
+
     if(N < 1 or N > 20){ //VALIDACION DEL TAMANO DEL TABLERO
 
         cout << "[CABALLOS EN AJEDREZ]" << endl << endl;
@@ -29,7 +31,7 @@ int main() {
     }else if(N == 2){///SI N ES IGUAL A 2
         clearScreen();
 
-        ofstream Archivo("N",ios::app); ///NOMBRAR AL ARCHIVO
+        ofstream Archivo("CABAL_0" + to_string(N) + ".TXT",ios::app); ///NOMBRAR AL ARCHIVO
 
         cout << "[CABALLOS EN AJEDREZ]" << endl << endl;
 
@@ -41,21 +43,38 @@ int main() {
 
         cout << "MAXIMO DE CABALLOS: " << M << endl << endl;
         cout << "Soluciones: 1" << endl << endl;
-        Archivo << N;
-        Archivo.close();
+        ///SE AGREGARN LOS DATOS M Y DE SOLUCIONES AL ARCHIVO
+        Archivo << M << endl;
+        Archivo << "1" << endl << endl;
 
+        ///IMPLEMENTACION DEL TABLERO
         for(int indice = 1; indice <= N; indice++){
             for(int index = 1; index <= N; index++){
                 tablero[indice][index] = 1;
                 cout << tablero[indice][index];
+                ///SE GRABA EN UN ARCHIVO EL TABLERO
+                Archivo << tablero[indice][index] << " ";
             }
             cout << endl;
+            Archivo << endl;
         }
         cout << endl;
+
+        Archivo.close();
 
     }else if((N % 2) != 0){ ///SABER SI N ES IMPAR
 
         clearScreen();
+        string nombreDelArchivo;
+
+        ///CONDICIONES PARA NOMBRAR AL ARCHIVO
+        if(N < 10){
+            nombreDelArchivo = "CABAL_0" + to_string(N) + ".TXT";
+        }else{
+            nombreDelArchivo = "CABAL_" + to_string(N) + ".TXT";
+        }
+
+        ofstream Archivo(nombreDelArchivo,ios::app); ///NOMBRAR AL ARCHIVO
 
         cout << "[CABALLOS EN AJEDREZ]" << endl << endl;
 
@@ -66,9 +85,13 @@ int main() {
         M = ((N*N) / 2) + 1; ///calcular el maximo de caballos
 
         cout << "MAXIMO DE CABALLOS: " << M << endl << endl;
-        cout << "2 SOLUCIONES" << endl << endl;
+        cout << "1 SOLUCIONES" << endl << endl;
         cout << "Soluciones: 1" << endl << endl;
+        ///AGREGAR AL DISCO EL VALOR DE M Y CANTIDAD DE SOLUCIONES
+        Archivo << M << endl;
+        Archivo << "1" << endl << endl;
 
+        ///IMPLEMENTACION DEL TABLERO
         for(int indice = 1; indice <= N; indice++){
             for(int index = 1; index <= N; index++){
                 if(cambio){
@@ -79,12 +102,29 @@ int main() {
                     cambio = true;
                 }
                 cout << tablero[indice][index];
+                ///SE GRABA EN UN ARCHIVO EL TABLERO
+                Archivo << tablero[indice][index] << " ";
             }
             cout << endl;
+            Archivo << endl;
         }
         cout << endl;
+
+        Archivo.close();
+
     }else if((N % 2) == 0){ ///SABER SI ES PAR
         clearScreen();
+
+        string nombreDelArchivo;
+
+        ///CONDICIONES PARA NOMBRAR AL ARCHIVO
+        if(N < 10){
+            nombreDelArchivo = "CABAL_0" + to_string(N) + ".TXT";
+        }else{
+            nombreDelArchivo = "CABAL_" + to_string(N) + ".TXT";
+        }
+
+        ofstream Archivo(nombreDelArchivo,ios::app); ///NOMBRAR AL ARCHIVO
 
         cout << "[CABALLOS EN AJEDREZ]" << endl << endl;
 
@@ -96,9 +136,13 @@ int main() {
 
         cout << "MAXIMO DE CABALLOS: " << M << endl << endl;
         cout << "Soluciones: 2" << endl << endl;
+        ///AGREGAR AL DISCO EL VALOR DE M Y CANTIDAD DE SOLUCIONES
+        Archivo << M << endl;
+        Archivo << "2" << endl << endl;
 
         cout << "[SOLUCION 1]" << endl << endl;
 
+        ///IMPLEMENTACION DEL TABLERO
         for(int indice = 1; indice <= N; indice++){
             for(int index = 1; index <= N; index++){
                 if((indice + index) % 2 == 0){
@@ -109,13 +153,18 @@ int main() {
                     cambio = true;
                 }
                 cout << tablero[indice][index];
+                ///SE GRABA EN UN ARCHIVO EL TABLERO
+                Archivo << tablero[indice][index] << " ";
             }
             cout << endl;
+            Archivo << endl;
         }
         cout << endl << endl;
+        Archivo << endl << endl;
 
         cout << "[SOLUCION 2]" << endl << endl;
 
+        ///IMPLEMENTACION DEL TABLERO
         for(int indice = 1; indice <= N; indice++){
             for(int index = 1; index <= N; index++){
                 if((indice + index) % 2 == 0){
@@ -126,9 +175,13 @@ int main() {
                     cambio = true;
                 }
                 cout << tablero[indice][index];
+                ///SE GRABA EN UN ARCHIVO EL TABLERO
+                Archivo << tablero[indice][index] << " ";
             }
             cout << endl;
+            Archivo << endl;
         }
         cout << endl;
+        Archivo.close();
     }
 }
